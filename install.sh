@@ -12,11 +12,11 @@ sudo cp /usr/share/zoneinfo/Europe/Bratislava > /etc/localtime
 echo "Installing packages" | tee -a $logFile
 sudo apt-get update --force-yes --yes | tee -a $logFile
 sudo apt-get upgrade --force-yes --yes | tee -a $logFile
-sudo apt-get install git minidlna samba samba-common smbclient screen youtube-dl hdparm ntfs-3g binutils libexpat1-dev libc6 --force-yes --yes | tee -a $logFile
+sudo apt-get install git samba samba-common smbclient screen youtube-dl hdparm ntfs-3g binutils libexpat1-dev libc6 --force-yes --yes | tee -a $logFile
 
 echo "Getting the custom scripts from github" | tee -a $logFile
 cd $repParent
-git clone https://github.com/vladonemo/my-raspberry-nas | tee -a $logFile
+git clone https://github.com/vladonemo/generic-raspberry-nas | tee -a $logFile
 
 echo "First part of installing Plex Media Server" | tee -a $logFile
 sudo mkdir -p /usr/lib/plexmediaserver
@@ -38,7 +38,7 @@ sudo chmod +x /usr/sbin/start_pms
 sudo chmod +x /etc/init.d/plexmediaserver
 sudo update-rc.d plexmediaserver defaults
 
-sudo useradd -g users adamcek | tee -a $logFile
-sudo smbpasswd -a adamcek
+sudo useradd -g users nasuser | tee -a $logFile
+sudo smbpasswd -a nasuser
 
 echo "Please reboot the raspberry to apply the changes"

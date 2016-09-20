@@ -1,6 +1,4 @@
 #!/bin/bash
 
-/home/pi/backup/scripts/backup_hdd_main.sh Photos
-/home/pi/backup/scripts/backup_hdd_main.sh Users
-/home/pi/backup/scripts/backup_hdd_main.sh Videos
-/home/pi/backup/scripts/backupPlex.sh
+#/home/pi/backup/scripts/backup_hdd_main.sh <Folder>
+#/home/pi/backup/scripts/backupPlex.sh
