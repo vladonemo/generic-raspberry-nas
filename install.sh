@@ -7,7 +7,7 @@ echo "Expanding the partition to fill the SD card" | tee $logFile
 sudo raspi-config --expand-rootfs | tee -a $logFile
 echo "Setting the default boot option to console, so no UI" | tee -a $logFile
 sudo systemctl set-default multi-user.target
-sudo cp /usr/share/zoneinfo/Europe/Bratislava > /etc/localtime
+sudo bash -c "cp /usr/share/zoneinfo/Europe/Bratislava > /etc/localtime"
 
 echo "Installing packages" | tee -a $logFile
 sudo apt-get update --force-yes --yes | tee -a $logFile
@@ -20,13 +20,13 @@ git clone https://github.com/vladonemo/generic-raspberry-nas | tee -a $logFile
 
 echo "First part of installing Plex Media Server" | tee -a $logFile
 sudo mkdir -p /usr/lib/plexmediaserver
-bash $repParent/my-raspberry-nas/installPlex.sh
+bash $repParent/generic-raspberry-nas/installPlex.sh
 sudo adduser --quiet --system --shell /bin/bash --home /var/lib/plexmediaserver plex
 sudo chown plex -R /usr/lib/plexmediaserver
 
 echo "Installing the custom scripts" | tee -a $logFile
-cd $repParent/my-raspberry-nas/home/pi/backup/scripts/
-sudo ./restoreFiles.sh list_nasFull.lst ~/my-raspberry-nas / | tee -a $logFile
+cd $repParent/generic-raspberry-nas/home/pi/backup/scripts/
+sudo ./restoreFiles.sh list_nasFull.lst ~/generic-raspberry-nas / | tee -a $logFile
 
 sudo bash -c "echo 100000 > /proc/sys/fs/inotify/max_user_watches"
 sudo locale-gen
